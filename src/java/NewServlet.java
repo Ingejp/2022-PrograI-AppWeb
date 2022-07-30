@@ -35,7 +35,11 @@ public class NewServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter respuesta = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            alumno=new Alumno();
+            alumno=new Alumno();    
+            String pass =  request.getParameter("pass");
+            String opcion =  request.getParameter("opcion");
+            alumno.setNombre(request.getParameter("nombre"));
+            alumno.setCorreo(request.getParameter("correo"));
             respuesta.println("<!DOCTYPE html>");
             respuesta.println("<html>");
             respuesta.println("<head>");
@@ -43,8 +47,9 @@ public class NewServlet extends HttpServlet {
             respuesta.println("</head>");
             respuesta.println("<body>");
             respuesta.println("<h1>Mi primer servlet " + request.getContextPath() + "</h1>");
-            respuesta.println("<h1>Segundo Titulo" + alumno.getNombre() +  "</h1>");
-             respuesta.println("<h2>Tercer Titulo</h2>");
+            respuesta.println("<h1>Datos del alumno registrado, gracias por registrarse </h1><br>");         
+            respuesta.println("<h2>" + alumno.getNombre() + "</h2>");
+            respuesta.println("<h2>" + alumno.getCorreo() + "</h2>");
             respuesta.println("</body>");
             respuesta.println("</html>");
         }
