@@ -5,20 +5,31 @@
 package Clases;
 
 public class Alumno {
-    private int codigo;
+    private String codigo;
     private String nombre;
     private String correo;
     private String direccion;
+    Alumno[] tablaALumno;
+    int indiceArray;
+    
+    public Alumno(String codigo, String nombre, String correo, String direccion){
+        this.codigo=codigo;
+        this.nombre=nombre;
+        this.correo=correo;
+        this.direccion=direccion;      
+        this.tablaALumno = new Alumno[100];
+        this.indiceArray=0;
+    }
     
     public Alumno(){
         this.nombre="Alumno de ejemplo";
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -37,7 +48,22 @@ public class Alumno {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
     
+    public void guardarAlumno(Alumno alumno){
+        this.tablaALumno[this.indiceArray]=alumno;  
+        this.indiceArray=this.indiceArray+1;
+    }
     
+    public Alumno[] getAlumnos(){
+        return this.tablaALumno;
+    }
     
 }
