@@ -5,6 +5,7 @@
 
 
 import Clases.Alumno;
+import Clases.AlumnoController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -20,7 +21,8 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/NewServlet"})
 public class NewServlet extends HttpServlet {
     Alumno alumno;
-    Alumno alumno2;
+    AlumnoController registroAlumno;
+     Alumno[] alumnosRegistrados;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,18 +37,19 @@ public class NewServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter respuesta = response.getWriter()) {
-            alumno=new Alumno();  // use el constructor vacio  
-            alumno.setNombre(request.getParameter("nombre"));
-            alumno.setCorreo(request.getParameter("correo"));
-            
-            //Usando el constructor con parametros.
-            alumno2=new Alumno(
+            alumno=new Alumno(
                 request.getParameter("codigo"),
                 request.getParameter("nombre"),
                 request.getParameter("correo"),
                 request.getParameter("direccion")
-            );
-            alumno2.guardarAlumno(alumno2);//almacenarlo en el array
+            );               
+            
+            if(registroAlumno==null){
+                 registroAlumno=new AlumnoController();
+            }
+           
+            registroAlumno.guardarAlumno(alumno);//almacenarlo en el array
+             alumnosRegistrados= registroAlumno.getAlumnos();
             
             respuesta.println("<!DOCTYPE html>");
             respuesta.println("<html>");
@@ -55,19 +58,15 @@ public class NewServlet extends HttpServlet {
             respuesta.println("</head>");
             respuesta.println("<body>");
             respuesta.println("<h1>Mi primer servlet " + request.getContextPath() + "</h1>");
-            respuesta.println("<h1>Datos del alumno registrado, gracias por registrarse </h1><br>");         
-            respuesta.println("<h2>" + alumno.getNombre() + "</h2>");
-            respuesta.println("<h2>" + alumno.getCorreo() + "</h2>");
-            respuesta.println("<table border=1><tbody><tr>");
-            respuesta.println("<td>"+ alumno2.getCodigo() +"</td>");
-            respuesta.println("<td>"+ alumno2.getNombre() +"</td>");
-            respuesta.println("<td>"+ alumno2.getCorreo() +"</td>");
-            respuesta.println("<td>"+ alumno2.getDireccion() +"</td>");
+            respuesta.println("<h1>Datos del alumno registrado, gracias por registrarse </h1><br>");  
+            respuesta.println("<table border=1><tbody><tr>");            
+            
+            for (int i = 0; i < alumnosRegistrados.length; i++){
+                    if(!alumnosRegistrados[i].getCodigo().isEmpty()){
+                       respuesta.println("<div>" + alumnosRegistrados[i].getNombre() + "</div>");
+                    }
+                }
             respuesta.println("</tr></tbody></table><br>");
-            
-            Alumno[] alumnos= alumno2.getAlumnos();
-            
-            respuesta.println("<div>" + alumnos[0].getNombre() + "</div>");
             respuesta.println("</body>");
             respuesta.println("</html>");
         }

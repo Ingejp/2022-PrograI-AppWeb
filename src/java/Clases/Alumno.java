@@ -9,16 +9,13 @@ public class Alumno {
     private String nombre;
     private String correo;
     private String direccion;
-    Alumno[] tablaALumno;
-    int indiceArray;
+  
     
     public Alumno(String codigo, String nombre, String correo, String direccion){
         this.codigo=codigo;
         this.nombre=nombre;
         this.correo=correo;
-        this.direccion=direccion;      
-        this.tablaALumno = new Alumno[100];
-        this.indiceArray=0;
+        this.direccion=direccion;     
     }
     
     public Alumno(){
@@ -55,15 +52,6 @@ public class Alumno {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-    
-    public void guardarAlumno(Alumno alumno){
-        this.tablaALumno[this.indiceArray]=alumno;  
-        this.indiceArray=this.indiceArray+1;
-    }
-    
-    public Alumno[] getAlumnos(){
-        return this.tablaALumno;
     }
     
 }
