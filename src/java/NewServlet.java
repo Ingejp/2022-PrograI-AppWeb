@@ -54,19 +54,26 @@ public class NewServlet extends HttpServlet {
             respuesta.println("<!DOCTYPE html>");
             respuesta.println("<html>");
             respuesta.println("<head>");
-            respuesta.println("<title>Servlet NewServlet</title>");            
+            respuesta.println("<title>Servlet NewServlet</title>");   
+            respuesta.println("<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css' integrity='sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N' crossorigin='anonymous'>");
+            respuesta.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct' crossorigin='anonymous'></script>");
             respuesta.println("</head>");
             respuesta.println("<body>");
             respuesta.println("<h1>Mi primer servlet " + request.getContextPath() + "</h1>");
             respuesta.println("<h1>Datos del alumno registrado, gracias por registrarse </h1><br>");  
-            respuesta.println("<table border=1><tbody><tr>");            
-            
+            respuesta.println("<table border=1><tbody>");   
+            respuesta.println("<tr><td>CODIGO CLIENTE</td><td>NOMBRE DEL CLIENTE</td><td>CORREO DEL CLIENTE</td></tr>");            
             for (int i = 0; i < alumnosRegistrados.length; i++){
                     if(!alumnosRegistrados[i].getCodigo().isEmpty()){
-                       respuesta.println("<div>" + alumnosRegistrados[i].getNombre() + "</div>");
+                       respuesta.println("<tr><td>" + alumnosRegistrados[i].getCodigo()+ "</td>");
+                       respuesta.println("<td>" + alumnosRegistrados[i].getNombre() + "</td>");
+                       respuesta.println("<td>" + alumnosRegistrados[i].getCorreo()+ "</td></tr>");
                     }
                 }
-            respuesta.println("</tr></tbody></table><br>");
+            respuesta.println("</tbody></table><br>");
+            respuesta.println("<form>");
+            respuesta.println("<button type='button' class='btn btn-success'>Regresar</button>");
+            respuesta.println("</form>");
             respuesta.println("</body>");
             respuesta.println("</html>");
         }
