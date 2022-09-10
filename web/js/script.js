@@ -141,10 +141,18 @@ function enviarFormularioOpcion2(){
               //console.log("response xml=> " + XHR.responseXML);
               document.getElementById('bodyTable').innerHTML=XHR.response;
               mostrarMensaje();
+              limpiarFormulario();
             }
           };
           
           XHR.send(formData);         
+}
+
+function limpiarFormulario(){
+    document.getElementById("codigo").value='';
+    document.getElementById("nombre").value='';
+    document.getElementById("correo").value='';
+    document.getElementById("direccion").value='';
 }
 
 function mostrarMensaje(){

@@ -5,14 +5,14 @@
 package Clases;
 
 public class Alumno {
-    private String codigo;
+    private int codigo;
     private String nombre;
     private String correo;
     private String direccion;
     private String tipo;
 
     
-    public Alumno(String codigo, String nombre, String correo, String direccion, String tipo){
+    public Alumno(int codigo, String nombre, String correo, String direccion, String tipo){
         this.codigo=codigo;
         this.nombre=nombre;
         this.correo=correo;
@@ -24,11 +24,11 @@ public class Alumno {
         this.nombre="Alumno de ejemplo";
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
