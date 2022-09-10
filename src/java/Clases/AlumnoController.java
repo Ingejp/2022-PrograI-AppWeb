@@ -18,7 +18,7 @@ public class AlumnoController {
     int indiceArray;
     private ConexionBaseDeDatos conectorBD;
     private Connection conexion;
-    private PreparedStatement prstmt = null;
+    private PreparedStatement statement = null;
     private ResultSet result = null;
     
     public AlumnoController(){
@@ -46,12 +46,12 @@ public class AlumnoController {
              sql += " VALUES( ?,?,?,?)"; 
         try{
             abrirConexion();
-            prstmt = conexion.prepareStatement(sql); 
-            prstmt.setString(1, alumno.getCodigo());
-            prstmt.setString(2, alumno.getNombre());
-            prstmt.setString(3, alumno.getCorreo());
-            prstmt.setString(4, alumno.getTipo());
-             int resultado = prstmt.executeUpdate(); 
+            statement = conexion.prepareStatement(sql); 
+            statement.setInt(1, alumno.getCodigo());
+            statement.setString(2, alumno.getNombre());
+            statement.setString(3, alumno.getCorreo());
+            statement.setString(4, alumno.getTipo());
+             int resultado = statement.executeUpdate(); 
                 if(resultado > 0){
                     return true;
                 }else{

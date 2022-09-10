@@ -8,14 +8,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author CB090828
- */
 public class ConexionBaseDeDatos {
     
     private String url="jdbc:mysql://localhost:3306";//url de MySQL
-    private String usuario="root";
+    private String usuario="root";// usuario de mysql local
     private String clave=""; 
     private Connection conexion=null;  
     
