@@ -43,14 +43,14 @@ public class AlumnoController {
     
     public boolean guardarAlumno2(Alumno alumno){        
         String sql = "INSERT INTO universidad.alumno(numero_carne, nombre, correo, genero_idgenero) ";
-             sql += " VALUES( ?,?,?,?)"; 
+             sql += " VALUES(?,?,?,?)"; 
         try{
             abrirConexion();
             statement = conexion.prepareStatement(sql); 
             statement.setInt(1, alumno.getCodigo());
             statement.setString(2, alumno.getNombre());
             statement.setString(3, alumno.getCorreo());
-            statement.setString(4, alumno.getTipo());
+            statement.setInt(4, alumno.getTipo());
              int resultado = statement.executeUpdate(); 
                 if(resultado > 0){
                     return true;
@@ -59,8 +59,37 @@ public class AlumnoController {
                 }
         }catch(SQLException e){
             String error = e.getMessage();  
+            System.out.println(error);
             return false;
         }    
+    }
+    
+    public void getAlumnos2(StringBuffer respuesta){   
+        String sql="select * from universidad.alumno";
+        try{
+        abrirConexion();
+        statement= conexion.prepareStatement(sql);                        
+        result = statement.executeQuery();            
+            if (result!=null){
+                while (result.next()){
+                respuesta.append("<tr>");
+                respuesta.append("<td >").append(result.getString("numero_carne")).append("</td>");
+                respuesta.append("<td >").append(result.getString("nombre")).append("</td>");
+                respuesta.append("<td >").append(result.getString("correo")).append("</td>");
+                respuesta.append("<td >").append(result.getString("telefono")).append("</td>");
+                respuesta.append("<td id=\"").append(result.getString("numero_carne"))
+                        .append("\"  onclick=\"edit(this.id);\">") 
+                        .append(" <a class=\"btn btn-warning\"'><i class=\"fas fa-edit\"></i>  </a>"
+                                +" <a class=\"btn btn-danger\"'> <i class=\"fas fa-trash-alt\"></i> </a>"
+                                + " <td></tr>");
+                }
+            }else{
+                respuesta.append("error al consultar");
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
     
     

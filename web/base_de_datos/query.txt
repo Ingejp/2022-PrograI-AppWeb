@@ -41,8 +41,7 @@ CREATE TABLE `alumno` (
 
 LOCK TABLES `alumno` WRITE;
 /*!40000 ALTER TABLE `alumno` DISABLE KEYS */;
-INSERT INTO `alumno` VALUES (12342,'BILL','GATES','BGATES@MICROSOFT.COM',NULL,NULL,1),(12345,'JUAN PABLO ','ESCOBAR CASTRO','ingejp@outlook.com','78945612','colonia san andres santo tomas de castilla puerto barrios izabal',1),(23456,'EDWIN','BARRERA','ebarrera@gmail.com','2345677654','puerto barrios izabal',1),(45464,'ALLAN','CORREA','correo@correo.com',NULL,NULL,1),(123474,'JORGE ARMANDO','RIVAS A','correo@correo.com',NULL,NULL,1),(564217,'JOSE MANUEL','FELIZ','correo@correo.com',NULL,NULL,1),(4561237,'PERLA RUBY','LOPEZ','perla@gmail.com','78945222','COLONIA LA PRIMAVERA PUERTO BARRIOS IZABAL',2),(4645645,'JUAN LUIS','PEREZ','jperez@gmail.com','789946546','Puerto Barrios Izabal',1),(12345678,'EFRAIN','DE LEON ','efraindeleon@gmail.com','789456123','14 CALLE COLONIA LANDIVAR PUERTO BARRIOS IZABAL',1),(12345688,'GEORGE ','DE LA SELVA','ALGO@CORREO.COM',NULL,NULL,1),(15642452,'CARLOS ','RUIZ','correo@correo.com',NULL,NULL,1),(147141414,'JORGE ','ORELLANA','correo@correo.com',NULL,NULL,1),(564654564,'FERNANDO','ORDOÑEZ','fernando@correo.com',NULL,NULL,1),(987987897,'JENNIFER ','LOPEZ','correo@correo.com',NULL,NULL,1);
-/*!40000 ALTER TABLE `alumno` ENABLE KEYS */;
+INSERT INTO `alumno` VALUES (12342,'BILL GATES','BGATES@MICROSOFT.COM',NULL,NULL,1),(12345,'JUAN PABLO ','ingejp@outlook.com','78945612','colonia san andres santo tomas de castilla puerto barrios izabal',1),(23456,'EDWIN BARRERA','ebarrera@gmail.com','2345677654','puerto barrios izabal',1),(45464,'ALLAN CORREA','correo@correo.com',NULL,NULL,1),(123474,'JORGE ARMANDO RIVAS','correo@correo.com',NULL,NULL,1),(564217,'JOSE MANUEL FELIZ','correo@correo.com',NULL,NULL,1),(4561237,'PERLA RUBY LOPEZ','perla@gmail.com','78945222','COLONIA LA PRIMAVERA PUERTO BARRIOS IZABAL',2);
 UNLOCK TABLES;
 
 --

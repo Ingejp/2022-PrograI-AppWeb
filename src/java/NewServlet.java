@@ -9,11 +9,11 @@ import Clases.AlumnoController;
 import Clases.ConexionBaseDeDatos;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -53,24 +53,32 @@ public class NewServlet extends HttpServlet {
                 request.getParameter("nombre"),
                 request.getParameter("correo"),
                 request.getParameter("direccion"),
-                request.getParameter("opcion")
-            );               
+                 Integer.parseInt(request.getParameter("opcion"))
+            );       
+            
                         
             if(registroAlumno==null){
                  registroAlumno=new AlumnoController();
             }
            
-            registroAlumno.guardarAlumno(alumno);//almacenarlo en el array
+            //registroAlumno.guardarAlumno(alumno);//almacenarlo en el array
             
            if(registroAlumno.guardarAlumno2(alumno)){//almacenarlo en BD
                respuesta.println(1);
            }else{
                respuesta.println(0);
            }
-            alumnosRegistrados= registroAlumno.getAlumnos();           
+           StringBuffer res = new StringBuffer();
+           registroAlumno.getAlumnos2(res);
+           respuesta.write(res.toString());
+           respuesta.flush();
+           respuesta.close();
+            //alumnosRegistrados= registroAlumno.getAlumnos(); 
+            
            
-            for (int i = 0; i < alumnosRegistrados.length; i++){
-                    if(!alumnosRegistrados[i].getCodigo().isEmpty()){
+            /*for (int i = 0; i < alumnosRegistrados.length; i++){
+                   //if(!alumnosRegistrados[i].getCodigo().isEmpty()){
+                    if(alumnosRegistrados[i].getCodigo()>0){
                        respuesta.println("<tr><td>" + alumnosRegistrados[i].getCodigo()+ "</td>");
                        respuesta.println("<td>" + alumnosRegistrados[i].getNombre() + "</td>");
                        respuesta.println("<td>" + alumnosRegistrados[i].getDireccion()+ "</td>");
@@ -82,7 +90,7 @@ public class NewServlet extends HttpServlet {
                                + "</td></tr>");
                     }
                 }
-            //respuesta.println(1);
+            //respuesta.println(1);*/
         }
     }
 

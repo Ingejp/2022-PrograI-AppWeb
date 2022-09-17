@@ -9,10 +9,10 @@ public class Alumno {
     private String nombre;
     private String correo;
     private String direccion;
-    private String tipo;
+    private int tipo;
 
     
-    public Alumno(int codigo, String nombre, String correo, String direccion, String tipo){
+    public Alumno(int codigo, String nombre, String correo, String direccion, int tipo){
         this.codigo=codigo;
         this.nombre=nombre;
         this.correo=correo;
@@ -55,11 +55,11 @@ public class Alumno {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-        public String getTipo() {
+        public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 }

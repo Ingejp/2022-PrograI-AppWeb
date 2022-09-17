@@ -147,6 +147,7 @@ function enviarFormularioOpcion2(){
           XHR.send(formData);         
 }
 
+
 function limpiarFormulario(){
     document.getElementById("codigo").value='';
     document.getElementById("nombre").value='';
