@@ -142,8 +142,7 @@ function enviarFormularioOpcion2(){
               document.getElementById('bodyTable').innerHTML=XHR.response;
               mostrarMensaje();
             }
-          };
-          
+          };          
           XHR.send(formData);         
 }
 
