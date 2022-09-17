@@ -6,13 +6,14 @@
 
 import Clases.Alumno;
 import Clases.AlumnoController;
+import Clases.ConexionBaseDeDatos;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -24,6 +25,16 @@ public class NewServlet extends HttpServlet {
     AlumnoController registroAlumno;
      Alumno[] alumnosRegistrados;
 
+    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,19 +49,25 @@ public class NewServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter respuesta = response.getWriter()) {            
             alumno=new Alumno(
-                request.getParameter("codigo"),
+                Integer.parseInt(request.getParameter("codigo")),
                 request.getParameter("nombre"),
                 request.getParameter("correo"),
                 request.getParameter("direccion"),
                 request.getParameter("opcion")
             );               
-            
+                        
             if(registroAlumno==null){
                  registroAlumno=new AlumnoController();
             }
            
             registroAlumno.guardarAlumno(alumno);//almacenarlo en el array
-             alumnosRegistrados= registroAlumno.getAlumnos();           
+            
+           if(registroAlumno.guardarAlumno2(alumno)){//almacenarlo en BD
+               respuesta.println(1);
+           }else{
+               respuesta.println(0);
+           }
+            alumnosRegistrados= registroAlumno.getAlumnos();           
            
             for (int i = 0; i < alumnosRegistrados.length; i++){
                     if(!alumnosRegistrados[i].getCodigo().isEmpty()){
@@ -65,6 +82,7 @@ public class NewServlet extends HttpServlet {
                                + "</td></tr>");
                     }
                 }
+            //respuesta.println(1);
         }
     }
 
