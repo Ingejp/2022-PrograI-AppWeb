@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/JP/Documents/NetBeansProjects/2022-PrograI-AppWeb/src/java/Clases/AlumnoController.java</file>
-            <file>file:/C:/Users/JP/Documents/NetBeansProjects/2022-PrograI-AppWeb/web/base_de_datos/query.txt</file>
-            <file>file:/C:/Users/JP/Documents/NetBeansProjects/2022-PrograI-AppWeb/src/java/NewServlet.java</file>
-            <file>file:/C:/Users/JP/Documents/NetBeansProjects/2022-PrograI-AppWeb/src/java/Clases/Alumno.java</file>
-            <file>file:/C:/Users/JP/Documents/NetBeansProjects/2022-PrograI-AppWeb/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/JP/Documents/NetBeansProjects/2022-PrograI-AppWeb/web/index.html</file>
-            <file>file:/C:/Users/JP/Documents/NetBeansProjects/2022-PrograI-AppWeb/web/js/script.js</file>
+            <file>file:/C:/Users/JP/Documents/NetBeansProjects/PrograII/web/js/script.js</file>
+            <file>file:/C:/Users/JP/Documents/NetBeansProjects/PrograII/src/java/NewServlet.java</file>
+            <file>file:/C:/Users/JP/Documents/NetBeansProjects/PrograII/src/java/Clases/AlumnoController.java</file>
+            <file>file:/C:/Users/JP/Documents/NetBeansProjects/PrograII/src/java/Clases/ConexionBaseDeDatos.java</file>
+            <file>file:/C:/Users/JP/Documents/NetBeansProjects/PrograII/web/index.html</file>
+            <file>file:/C:/Users/JP/Documents/NetBeansProjects/PrograII/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>
