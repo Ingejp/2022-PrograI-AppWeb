@@ -23,8 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class NewServlet extends HttpServlet {
     Alumno alumno;
     AlumnoController registroAlumno;
-     Alumno[] alumnosRegistrados;
-     StringBuffer objetoRespuesta = new StringBuffer();
+    Alumno[] alumnosRegistrados;     
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,46 +46,29 @@ public class NewServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter respuesta = response.getWriter()) {            
-           
+        try ( PrintWriter respuesta = response.getWriter()) {    
+            respuesta.write("");
            registroAlumno=new AlumnoController();
            String control = request.getParameter("control");
-           
+           StringBuffer objetoRespuesta = new StringBuffer();
            if(control.toUpperCase().equals("GUARDAR")){
+    //se crea el objeto alumnos con los datos recibidos del navegador a traves de la petición HTTP
                alumno=new Alumno(
                 Integer.parseInt(request.getParameter("codigo")),
                 request.getParameter("nombre"),
                 request.getParameter("correo"),
                 request.getParameter("direccion"),
-                Integer.parseInt(request.getParameter("opcion")));                
-                registroAlumno.guardarAlumno2(alumno);//almacenarlo en BD                 
+                Integer.parseInt(request.getParameter("genero")));                
+                registroAlumno.guardarAlumno(alumno);//almacenarlo en BD                 
            }else if(control.toUpperCase().equals("ELIMINAR")){
                int codigoEliminar= Integer.parseInt(request.getParameter("codigo_alumno"));
                registroAlumno.eliminarALumno(codigoEliminar);
            }
-                        
-            
-            //registroAlumno.guardarAlumno(alumno);//almacenarlo en el array
-            //alumnosRegistrados= registroAlumno.getAlumnos();// consultar alumnos en el array                       
-                    
-           registroAlumno.getAlumnos2(objetoRespuesta);//consultar alumnos en la BD
+                  
+           registroAlumno.getAlumnos(objetoRespuesta);//consultar alumnos en la BD
            respuesta.write(objetoRespuesta.toString());             
+                      
             
-           
-            /*for (int i = 0; i < alumnosRegistrados.length; i++){
-                   //if(!alumnosRegistrados[i].getCodigo().isEmpty()){
-                    if(alumnosRegistrados[i].getCodigo()>0){
-                       respuesta.println("<tr><td>" + alumnosRegistrados[i].getCodigo()+ "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getNombre() + "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getDireccion()+ "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getCorreo()+ "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getTipo()+ "</td>");
-                       respuesta.println("<td>"
-                               + "<button type=\"button\" class=\"btn btn-warning\"></i>Editar</button> "
-                               + "<button type=\"button\" class=\"btn btn-danger\">Eliminar</button>"
-                               + "</td></tr>");
-                    }
-                }*/
         }
     }
 

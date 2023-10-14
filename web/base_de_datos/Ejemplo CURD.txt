@@ -1,0 +1,12 @@
+SELECT * FROM universidad.alumno;
+
+INSERT INTO alumno (numero_carne, nombre, correo, telefono, direccion, genero_idgenero) 
+VALUES ('5645648', 'IONI ALESSANDRO', 'IA@UMG.EDU.GT', '79798', 'MIAMI', '1');
+
+DELETE FROM alumno WHERE (numero_carne = '56456');
+
+UPDATE alumno 
+SET nombre = 'JUAN PABLO ESCOBAR' 
+WHERE (numero_carne = '65465');
+
+// Explicacion del CRUD - CREATE, READ, UPDATE, DELETE.

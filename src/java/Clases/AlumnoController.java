@@ -4,47 +4,26 @@
  */
 package Clases;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author JP
- */
 public class AlumnoController {
-      Alumno[] tablaALumno;
+    Alumno[] tablaALumno;
     int indiceArray;
     private ConexionBaseDeDatos conectorBD;
     private Connection conexion;
     private PreparedStatement statement = null;
     private ResultSet result = null;
     
-    public AlumnoController(){
-        this.tablaALumno = new Alumno[100];
-        this.indiceArray=0;
-    }
-    
-     public void guardarAlumno(Alumno alumno){
-        this.tablaALumno[this.indiceArray]=alumno;  
-        this.indiceArray=this.indiceArray+1;
-        // procedimiento para almacenar en la Base de Datos
-    }
-    
-    public Alumno[] getAlumnos(){
-        return this.tablaALumno;
-    }
-    
     public void abrirConexion(){
         conectorBD= new ConexionBaseDeDatos();
         conexion=conectorBD.conectar();
-    }    
-   
+    }       
     
-    public String guardarAlumno2(Alumno alumno){        
-        String sql = "INSERT INTO universidad.alumno(numero_carne, nombre, correo, direccion, genero_idgenero) ";
+    public String guardarAlumno(Alumno alumno){        
+        String sql = "INSERT INTO alumno(numero_carne, nombre, correo, direccion, genero_idgenero) ";
              sql += " VALUES(?,?,?,?,?)";              
        try{     
             abrirConexion();
@@ -65,29 +44,29 @@ public class AlumnoController {
         }
     }
     
-    public void getAlumnos2(StringBuffer respuesta){   
-        String sql="select * from universidad.alumno";
+    public void getAlumnos(StringBuffer respuesta){   
+        String sql="SELECT alumno.numero_carne, alumno.nombre, alumno.correo, alumno.direccion, genero.descripcion FROM alumno, genero WHERE alumno.genero_idgenero=genero.idgenero ORDER BY nombre asc";
         try{
         abrirConexion();
         statement= conexion.prepareStatement(sql);                        
         result = statement.executeQuery();            
-            if (result!=null){
+            if(result!=null){
                 while (result.next()){
-                respuesta.append("<tr>");
+                respuesta.append("<tr>");//crear la fila y la etique td son las columnas
                 respuesta.append("<td >").append(result.getString("numero_carne")).append("</td>");
                 respuesta.append("<td >").append(result.getString("nombre")).append("</td>");
                 respuesta.append("<td >").append(result.getString("direccion")).append("</td>");
                 respuesta.append("<td >").append(result.getString("correo")).append("</td>");
+                respuesta.append("<td >").append(result.getString("descripcion")).append("</td>");
                 respuesta.append("<td id=\"").append(result.getString("numero_carne"))
-                        .append("\"  onclick=\"eliminarAlumno(this.id);\">") 
-                         //.append("\"  onclick=\"eliminarAlumno("+result.getString("numero_carne")+");\">") 
+                        .append("\"  onclick=\"eliminarAlumno(this.id);\">")
                         .append(" <a class=\"btn btn-warning\"'><i class=\"fas fa-edit\"></i>  </a>"
                                 +" <a class=\"btn btn-danger\"'> <i class=\"fas fa-trash-alt\"></i> </a>"
                                 + " <td></tr>");
                 }
             }else{
                 respuesta.append("error al consultar");
-            }
+            }           
         }
         catch(SQLException ex){
             ex.printStackTrace();
@@ -110,5 +89,20 @@ public class AlumnoController {
         }
     }
     
+    // *** FUNCIONALIDAD PARA TRABAJAR CON ARRAYS ***
+    public AlumnoController(){// Construcctor para trabar con arrays
+        this.tablaALumno = new Alumno[100];
+        this.indiceArray=0;
+    }
+    
+     public void guardarAlumnoEnArray(Alumno alumno){
+        this.tablaALumno[this.indiceArray]=alumno;  
+        this.indiceArray=this.indiceArray+1;
+        // procedimiento para almacenar en la Base de Datos
+    }
+    
+    public Alumno[] getAlumnosFromArray(){
+        return this.tablaALumno;
+    }
     
 }

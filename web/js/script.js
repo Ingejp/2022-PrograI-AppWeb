@@ -190,3 +190,35 @@ function eliminarAlumno(codigo){
     
 }
 
+function mostrarAlumnos(){
+    var control = document.getElementById("control");
+    control.value="mostrar";
+    const XHR = new XMLHttpRequest();
+	  var formData = new URLSearchParams(new FormData(document.getElementById('form'))).toString();
+	  // Define what happens in case of error
+	  XHR.addEventListener('error', (event) => {
+	    alert('Oops! Something went wrong.');
+	  });
+	  // Set up our request
+	  XHR.open('POST', 'NewServlet', true);
+          XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          
+          XHR.onload = () => {
+            if (XHR.readyState === XHR.DONE && XHR.status === 200) {
+              console.log("response => " + XHR.response);
+              document.getElementById('bodyTable').innerHTML=XHR.response;
+              mostrarMensaje('Estudiantes mostrados exitosamente');
+              limpiarFormulario();
+            }
+          };   
+          XHR.send(formData); 
+}
+
+function limpiarTabla(){
+   var tabla=document.getElementById('tabla1');
+   var totalFilas = tabla.rows.length;   
+   for (var i = totalFilas -1; i >0; i--){
+       tabla.deleteRow(i);
+   }
+}
+
