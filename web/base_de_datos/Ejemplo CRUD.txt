@@ -10,3 +10,5 @@ SET nombre = 'JUAN PABLO ESCOBAR'
 WHERE (numero_carne = '65465');
 
 // Explicacion del CRUD - CREATE, READ, UPDATE, DELETE.
+
+//DML - Data Manipulation Languaje- sublenguaje para manipulacion de datos
